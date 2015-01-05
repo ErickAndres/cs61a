@@ -1,0 +1,24 @@
+def flatten(r):
+	if r is Rlist.empty:
+		return Rlist.empty
+	elif type(r.first) is int:
+		return Rlist(r.first, flatten(r.rest))
+	elif type(r.first) is Rlist:
+		return flatten(r.first)
+        
+        
+def flatten (tup):
+	if not tup:
+		return ()
+	elif type(tup[0])==tuple:
+		return flatten (tup[0])+flatten(tup[1:])
+	else:
+		return tup[0]+flatten(tup[1:])
+    
+(define (flatten lst)
+    (cond
+      ((null? lst) '())
+      ((integer? (car lst))
+       (append (cons (car lst) '()) (flatten (cdr lst))))
+      (else
+       (append (flatten (car lst)) (flatten (cdr lst))))))
